@@ -1,0 +1,9 @@
+# catkin build artifacts
+build/
+devel/
+install/
+logs/
+
+# python
+__pycache__/
+*.pyc

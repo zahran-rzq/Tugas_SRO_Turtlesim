@@ -1,0 +1,6 @@
+# Satu-satunya tempat daftar waypoint. Format: [x, y], area turtlesim 0..11
+waypoints:
+  - [2.0, 2.0]
+  - [9.0, 2.0]
+  - [9.0, 9.0]
+  - [2.0, 9.0]

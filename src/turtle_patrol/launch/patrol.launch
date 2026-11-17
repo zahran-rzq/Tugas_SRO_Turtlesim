@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
+
+  <node pkg="turtle_patrol" type="waypoint_controller.py" name="waypoint_controller" output="screen">
+    <!-- load di dalam node => parameter jadi ~waypoints (private) -->
+    <rosparam command="load" file="$(find turtle_patrol)/config/waypoints.yaml"/>
+  </node>
+</launch>
