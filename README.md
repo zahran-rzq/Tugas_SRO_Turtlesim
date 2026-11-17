@@ -10,6 +10,35 @@ tanpa teleport. Semua gerak lewat `/turtle1/cmd_vel` dan berdasarkan umpan balik
 | 2 | Safe Explorer (sensor virtual dinding) | `explorer.launch` |
 | 3 | Hunter (spawn, kejar, kill, skor) | `hunter.launch` |
 
+## Luaran
+
+### Screenshot rqt_graph
+
+**Level 1 — Waypoint Patrol** (`patrol.launch`)
+
+![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
+
+**Level 2 — Safe Explorer** (`explorer.launch`)
+
+![rqt_graph Level 2](src/turtle_patrol/docs/rqt_graph_lvl2.png)
+
+**Level 3 — Hunter** (`hunter.launch`)
+
+![rqt_graph Level 3](src/turtle_patrol/docs/rqt_graph_lvl3.png)
+
+> Topic `/score` tidak tampil di graph karena belum ada subscriber-nya (rqt_graph
+> menyembunyikan topic tanpa pasangan). Lihat isinya dengan `rostopic echo /score`.
+
+### Video demo
+
+<video src="src/turtle_patrol/docs/video.mp4" controls width="720">
+  Browser tidak mendukung tag video.
+</video>
+
+**[▶ Tonton video demo](src/turtle_patrol/docs/video.mp4)** (`src/turtle_patrol/docs/video.mp4`)
+
+---
+
 ## Build
 
 ```bash
@@ -182,25 +211,3 @@ src/turtle_patrol/
 - Lebih dari 2 node buatan sendiri yang berkomunikasi lewat topic.
 - Custom message (4) dan custom service (1).
 - Satu perintah `roslaunch` per level.
-
-## Luaran
-
-### Screenshot rqt_graph
-
-**Level 1 — Waypoint Patrol** (`patrol.launch`)
-
-![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
-
-**Level 2 — Safe Explorer** (`explorer.launch`)
-
-![rqt_graph Level 2](src/turtle_patrol/docs/rqt_graph_lvl2.png)
-
-**Level 3 — Hunter** (`hunter.launch`)
-
-![rqt_graph Level 3](src/turtle_patrol/docs/rqt_graph_lvl3.png)
-
-> Topic `/score` tidak tampil di graph karena belum ada subscriber-nya (rqt_graph
-> menyembunyikan topic tanpa pasangan). Lihat isinya dengan `rostopic echo /score`.
-
-### Video demo
-_(tambahkan)_
