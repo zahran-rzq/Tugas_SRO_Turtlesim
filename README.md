@@ -19,7 +19,9 @@ memakai P-controller berbasis umpan balik `/turtle1/pose`.
 
 ### Video demo
 
-**[▶ Tonton video demo (semua level)](https://github.com/zahran-rzq/Tugas_SRO_Turtlesim/blob/lvl3/src/turtle_patrol/docs/video.mp4)** — ada di branch `lvl3`.
+[![Video demo turtle_patrol](https://img.youtube.com/vi/osvQoGufH_A/hqdefault.jpg)](https://youtube.com/shorts/osvQoGufH_A)
+
+**[▶ Tonton video demo di YouTube](https://youtube.com/shorts/osvQoGufH_A)**
 
 ---
 
