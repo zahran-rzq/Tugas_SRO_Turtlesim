@@ -31,11 +31,9 @@ tanpa teleport. Semua gerak lewat `/turtle1/cmd_vel` dan berdasarkan umpan balik
 
 ### Video demo
 
-<video src="src/turtle_patrol/docs/video.mp4" controls width="720">
-  Browser tidak mendukung tag video.
-</video>
+[![Video demo turtle_patrol](https://img.youtube.com/vi/osvQoGufH_A/hqdefault.jpg)](https://youtube.com/shorts/osvQoGufH_A)
 
-**[▶ Tonton video demo](src/turtle_patrol/docs/video.mp4)** (`src/turtle_patrol/docs/video.mp4`)
+**[▶ Tonton video demo di YouTube](https://youtube.com/shorts/osvQoGufH_A)**
 
 ---
 
