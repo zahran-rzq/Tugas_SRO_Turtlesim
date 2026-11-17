@@ -1,8 +1,17 @@
 <launch>
+  <!-- auto_start:=false bila ingin memulai manual lewat service -->
+  <arg name="auto_start" default="true"/>
+
   <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
 
   <node pkg="turtle_patrol" type="waypoint_controller.py" name="waypoint_controller" output="screen">
-    <!-- load di dalam node => parameter jadi ~waypoints (private) -->
+    <param name="kp_lin" value="1.5"/>
+    <param name="kp_ang" value="4.0"/>
+    <param name="tolerance" value="0.1"/>
+  </node>
+
+  <node pkg="turtle_patrol" type="mission_manager.py" name="mission_manager" output="screen">
     <rosparam command="load" file="$(find turtle_patrol)/config/waypoints.yaml"/>
+    <param name="auto_start" value="$(arg auto_start)"/>
   </node>
 </launch>

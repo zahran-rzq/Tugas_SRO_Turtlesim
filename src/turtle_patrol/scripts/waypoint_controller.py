@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
+"""Node 1: P-controller. Mengejar /current_target berdasarkan /turtle1/pose."""
 import math
 import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
-
-KP_LIN = 1.5
-KP_ANG = 1.0
-TOL = 0.1
+from turtle_patrol.msg import Waypoint, MissionStatus
 
 
 def normalize(angle):
@@ -16,49 +14,47 @@ def normalize(angle):
 
 class Controller:
     def __init__(self):
+        self.kp_lin = rospy.get_param('~kp_lin', 1.5)
+        self.kp_ang = rospy.get_param('~kp_ang', 4.0)
+        self.tol = rospy.get_param('~tolerance', 0.1)
         self.pose = None
-        self.idx = 0
-        # daftar waypoint dari YAML (~waypoints), bukan hardcode
-        self.waypoints = rospy.get_param('~waypoints')
-        self.pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+        self.target = None
+        self.pub_cmd = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+        self.pub_status = rospy.Publisher('/mission_status', MissionStatus, queue_size=10)
         rospy.Subscriber('/turtle1/pose', Pose, self.pose_cb)
+        rospy.Subscriber('/current_target', Waypoint, self.target_cb)
 
     def pose_cb(self, msg):
         self.pose = msg
 
+    def target_cb(self, msg):
+        self.target = msg
+        rospy.loginfo('Target baru #%d: (%.1f, %.1f)', msg.index, msg.x, msg.y)
+
     def step(self):
-        # TODO 1: belum ada pose -> tunggu
-        if self.pose is None:
-            return
-        # semua waypoint selesai -> diam
-        if self.idx >= len(self.waypoints):
-            self.pub.publish(Twist())
-            return
+        if self.pose is None or self.target is None:
+            return  # belum ada pose / belum ada misi
 
-        gx, gy = self.waypoints[self.idx]
-
-        dx = gx - self.pose.x
-        dy = gy - self.pose.y
+        dx = self.target.x - self.pose.x
+        dy = self.target.y - self.pose.y
         distance = math.hypot(dx, dy)
+        reached = distance < self.tol
 
-        # TODO 5: sampai -> berhenti sebentar, lanjut ke waypoint berikutnya
-        if distance < TOL:
-            self.pub.publish(Twist())
-            rospy.loginfo('Waypoint %d (%.1f, %.1f) tercapai', self.idx, gx, gy)
-            self.idx += 1
-            return
-
-        # TODO 3 + 4: error sudut, dinormalisasi
-        desired = math.atan2(dy, dx)
-        err = normalize(desired - self.pose.theta)
-
-        # TODO 6: P-controller
         cmd = Twist()
-        cmd.angular.z = KP_ANG * err
-        # putar dulu kalau masih melenceng jauh, baru maju
-        if abs(err) < 0.5:
-            cmd.linear.x = KP_LIN * distance
-        self.pub.publish(cmd)
+        if not reached:
+            err = normalize(math.atan2(dy, dx) - self.pose.theta)
+            cmd.angular.z = self.kp_ang * err
+            if abs(err) < 0.5:  # putar dulu kalau masih melenceng jauh
+                cmd.linear.x = self.kp_lin * distance
+        self.pub_cmd.publish(cmd)
+
+        st = MissionStatus()
+        st.index = self.target.index
+        st.total = self.target.total
+        st.distance = distance
+        st.reached = reached
+        st.finished = reached and self.target.index == self.target.total - 1
+        self.pub_status.publish(st)
 
 
 if __name__ == '__main__':
