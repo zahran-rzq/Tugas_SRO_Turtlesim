@@ -5,6 +5,20 @@ memakai P-controller berbasis umpan balik `/turtle1/pose`.
 
 **Level yang diselesaikan:** Level 1 (Waypoint Patrol).
 
+## Luaran
+
+### Screenshot rqt_graph
+
+**Level 1 — Waypoint Patrol** (`patrol.launch`)
+
+![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
+
+### Video demo
+
+**[▶ Tonton video demo (semua level)](https://github.com/zahran-rzq/Tugas_SRO_Turtlesim/blob/lvl3/src/turtle_patrol/docs/video.mp4)** — ada di branch `lvl3`.
+
+---
+
 ## Build dan menjalankan
 
 ```bash
@@ -67,10 +81,3 @@ Parameter `kp_lin`, `kp_ang`, `tolerance` diatur di `src/turtle_patrol/launch/pa
 - 2 node buatan sendiri berkomunikasi lewat topic.
 - 1 custom service dan 2 custom message.
 - Satu perintah `roslaunch`.
-
-## Luaran
-- Screenshot rqt_graph saat sistem berjalan:
-
-  ![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
-
-- Video demo: _(tambahkan)_
