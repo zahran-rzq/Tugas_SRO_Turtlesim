@@ -184,8 +184,23 @@ src/turtle_patrol/
 - Satu perintah `roslaunch` per level.
 
 ## Luaran
-- Screenshot rqt_graph Level 1:
 
-  ![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
+### Screenshot rqt_graph
 
-- Video demo: _(tambahkan)_
+**Level 1 — Waypoint Patrol** (`patrol.launch`)
+
+![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
+
+**Level 2 — Safe Explorer** (`explorer.launch`)
+
+![rqt_graph Level 2](src/turtle_patrol/docs/rqt_graph_lvl2.png)
+
+**Level 3 — Hunter** (`hunter.launch`)
+
+![rqt_graph Level 3](src/turtle_patrol/docs/rqt_graph_lvl3.png)
+
+> Topic `/score` tidak tampil di graph karena belum ada subscriber-nya (rqt_graph
+> menyembunyikan topic tanpa pasangan). Lihat isinya dengan `rostopic echo /score`.
+
+### Video demo
+_(tambahkan)_
