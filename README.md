@@ -5,6 +5,24 @@ memakai P-controller berbasis umpan balik `/turtle1/pose`.
 
 **Level yang diselesaikan:** Level 1 (Waypoint Patrol), Level 2 (Safe Explorer).
 
+## Luaran
+
+### Screenshot rqt_graph
+
+**Level 1 — Waypoint Patrol** (`patrol.launch`)
+
+![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
+
+**Level 2 — Safe Explorer** (`explorer.launch`)
+
+![rqt_graph Level 2](src/turtle_patrol/docs/rqt_graph_lvl2.png)
+
+### Video demo
+
+**[▶ Tonton video demo (semua level)](https://github.com/zahran-rzq/Tugas_SRO_Turtlesim/blob/lvl3/src/turtle_patrol/docs/video.mp4)** — ada di branch `lvl3`.
+
+---
+
 ## Build dan menjalankan
 
 ```bash
@@ -79,18 +97,3 @@ Custom message `WallSensor`: `float32 front, left, right, nearest`, `bool near_w
 - 2 node buatan sendiri berkomunikasi lewat topic.
 - 1 custom service dan 2 custom message.
 - Satu perintah `roslaunch`.
-
-## Luaran
-
-### Screenshot rqt_graph
-
-**Level 1 — Waypoint Patrol** (`patrol.launch`)
-
-![rqt_graph Level 1](src/turtle_patrol/docs/rqt_graph_lvl1.png)
-
-**Level 2 — Safe Explorer** (`explorer.launch`)
-
-![rqt_graph Level 2](src/turtle_patrol/docs/rqt_graph_lvl2.png)
-
-### Video demo
-_(tambahkan)_
