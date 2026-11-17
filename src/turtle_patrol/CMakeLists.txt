@@ -55,6 +55,7 @@ add_message_files(
   MissionStatus.msg
   Waypoint.msg
   WallSensor.msg
+  Score.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -169,6 +170,7 @@ catkin_install_python(PROGRAMS
   scripts/mission_manager.py
   scripts/wall_sensor.py
   scripts/explorer.py
+  scripts/hunter_manager.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

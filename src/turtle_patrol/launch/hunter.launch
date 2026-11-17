@@ -1,0 +1,15 @@
+<launch>
+  <!-- Level 3: Hunter. Jangan dijalankan bersamaan dengan patrol/explorer (sama-sama publish cmd_vel) -->
+  <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
+
+  <!-- controller yang sama dengan Level 1; tolerance 0.5 = jarak tangkap -->
+  <node pkg="turtle_patrol" type="waypoint_controller.py" name="waypoint_controller" output="screen">
+    <param name="kp_lin" value="1.5"/>
+    <param name="kp_ang" value="4.0"/>
+    <param name="tolerance" value="0.5"/>
+  </node>
+
+  <node pkg="turtle_patrol" type="hunter_manager.py" name="hunter_manager" output="screen">
+    <param name="max_targets" value="0"/>  <!-- 0 = tanpa batas -->
+  </node>
+</launch>
