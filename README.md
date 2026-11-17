@@ -3,7 +3,7 @@
 turtle1 di turtlesim mengunjungi beberapa waypoint secara berurutan dan otonom,
 memakai P-controller berbasis umpan balik `/turtle1/pose`.
 
-**Level yang diselesaikan:** Level 1 (Waypoint Patrol).
+**Level yang diselesaikan:** Level 1 (Waypoint Patrol), Level 2 (Safe Explorer).
 
 ## Build dan menjalankan
 
@@ -60,6 +60,18 @@ linear.x  = Kp_lin * distance   (hanya jika |err| < 0.5 rad)
 sampai    = distance < 0.1
 ```
 Parameter `kp_lin`, `kp_ang`, `tolerance` diatur di `src/turtle_patrol/launch/patrol.launch`.
+
+
+## Level 2: Safe Explorer
+```bash
+roslaunch turtle_patrol explorer.launch   # jangan bersamaan dengan patrol.launch
+```
+| Node | Peran |
+|---|---|
+| `wall_sensor` | Sensor virtual: jarak ke dinding (depan/kiri/kanan lewat ray casting, dan terdekat) dari `/turtle1/pose`, publish `/wall_sensor`. |
+| `explorer` | Maju sambil berkelok; jika dinding dekat, berputar ke sisi lebih lapang sampai aman (hysteresis). Publish `/turtle1/cmd_vel`. |
+
+Custom message `WallSensor`: `float32 front, left, right, nearest`, `bool near_wall`.
 
 ## Kepatuhan aturan
 - Gerak hanya lewat `/turtle1/cmd_vel` (tanpa teleop/teleport).

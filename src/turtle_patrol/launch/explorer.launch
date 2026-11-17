@@ -1,0 +1,14 @@
+<launch>
+  <!-- Level 2: jangan dijalankan bersamaan dengan patrol.launch (keduanya publish cmd_vel) -->
+  <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" output="screen"/>
+
+  <node pkg="turtle_patrol" type="wall_sensor.py" name="wall_sensor" output="screen">
+    <param name="safe_distance" value="1.5"/>
+  </node>
+
+  <node pkg="turtle_patrol" type="explorer.py" name="explorer" output="screen">
+    <param name="speed" value="1.5"/>
+    <param name="turn_front" value="1.5"/>
+    <param name="clear_front" value="3.0"/>
+  </node>
+</launch>

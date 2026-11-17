@@ -54,6 +54,7 @@ add_message_files(
   FILES
   MissionStatus.msg
   Waypoint.msg
+  WallSensor.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -166,6 +167,8 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/waypoint_controller.py
   scripts/mission_manager.py
+  scripts/wall_sensor.py
+  scripts/explorer.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
